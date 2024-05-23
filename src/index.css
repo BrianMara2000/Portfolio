@@ -181,6 +181,15 @@
   margin:0 20px;
 }
 
+.slick-slider {
+  padding: 0 4%;
+}
+
+.slick-prev::before,
+.slick-next::before {
+  display: none;
+}
+
 .contact-info::after {
   content: "";
   position: absolute;
@@ -198,4 +207,8 @@
 
 .contact-info::after {
   color: #8749f2;
+}
+
+.slick-next {
+  display: none;
 }
