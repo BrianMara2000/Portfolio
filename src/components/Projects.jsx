@@ -24,25 +24,18 @@ const Projects = () => {
       {
         breakpoint: 1200,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToShow: 2,
+          slidesToScroll: 1,
           infinite: true,
           dots: true,
         },
       },
       {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 480,
+        breakpoint: 800,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          initialSlide: 2,
         },
       },
     ],
@@ -92,7 +85,7 @@ const Projects = () => {
         <Slider
           ref={slider}
           {...settings}
-          className="flex justify-between items-center font-poppins w-full gap-x-5 py-10"
+          className="flex justify-center items-center font-poppins w-full gap-x-5 py-10"
         >
           {projects.map((project) => (
             <Cards
