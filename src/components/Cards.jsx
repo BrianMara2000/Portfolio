@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 const Cards = ({ name, description, tags, image }) => {
   return (
-    <div className="card w-full h-[500px] rounded-3xl bg-white ">
+    <div className="card max-w-[400px] w-full h-[400px] rounded-3xl bg-white ">
       <div className="image-content relative flex flex-col px-2 py-4 items-center gap-y-1">
         <span className="overlay absolute h-full w-full bg-vivid left-0 top-0 rounded-t-3xl rounded-bl-3xl before:content-[' '] before:absolute before:h-10 before:w-10 before:bg-vivid before:right-0 before:-bottom-10 after:content-[' '] after:absolute after:h-10 after:w-10 after:right-0 after:-bottom-10 after:rounded-tl-none after:rounded-tr-3xl after:rounded-b-none after:bg-white"></span>
         <div className="card-iamge relative h-[150px] w-[250px] border-2 rounded-xl bg-white">
