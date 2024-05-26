@@ -202,6 +202,18 @@
   display: none;
 }
 
+.slick-dots li button::before {
+  margin-top: 10px;
+  font-size: 10px;
+  color: #fff;
+  opacity: 0.5;
+}
+
+.slick-dots li.slick-active button::before {
+  color: #fff;
+  opacity: 1;
+}
+
 .contact-info::after {
   content: "";
   position: absolute;
