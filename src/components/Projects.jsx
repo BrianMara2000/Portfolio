@@ -74,8 +74,8 @@ const Projects = () => {
           onTouchStart={touchArrowPrev}
           onTouchEnd={endTouchArrowPrev}
           onClick={() => slider?.current?.slickPrev()}
-          className={`absolute hidden sm:flex w-[50px] h-[50px] text-white top-[55%] left-0 translate-y-1/2 rounded-full items-center justify-center [@media(hover:hover)]:hover:bg-gray-300 [@media(hover:hover)]:hover:text-gray-900 cursor-pointer  z-10 ${
-            isTouchedPrev ? "bg-gray-300 text-gray-900 transition-all" : " "
+          className={`absolute hidden sm:flex w-[50px] h-[50px] text-white top-[55%] left-0 translate-y-1/2 rounded-full items-center justify-center [@media(hover:hover)]:hover:bg-vivid [@media(hover:hover)]:hover:text-gray-900 cursor-pointer  z-10 ${
+            isTouchedPrev ? "bg-vivid text-gray-900 transition-all" : " "
           }`}
         >
           <button>
@@ -101,8 +101,8 @@ const Projects = () => {
           onTouchStart={touchArrowNext}
           onTouchEnd={endTouchArrowNext}
           onClick={() => slider?.current?.slickNext()}
-          className={`absolute hidden sm:flex w-[50px] h-[50px] text-white top-[55%] right-0 translate-y-1/2 rounded-full items-center justify-center [@media(hover:hover)]:hover:bg-gray-300 [@media(hover:hover)]:hover:text-gray-900 cursor-pointer  z-10 ${
-            isTouchedNext ? "bg-gray-300 text-gray-900 transition-all" : " "
+          className={`absolute hidden sm:flex w-[50px] h-[50px] text-white top-[55%] right-0 translate-y-1/2 rounded-full items-center justify-center [@media(hover:hover)]:hover:bg-vivid [@media(hover:hover)]:hover:text-gray-900 cursor-pointer  z-10 ${
+            isTouchedNext ? "bg-vivid text-gray-900 transition-all" : " "
           }`}
         >
           <button>

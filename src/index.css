@@ -188,6 +188,15 @@
   padding: 0 4%;
 }
 
+@media (max-width: 480px) {
+  .slick-slider {
+    padding: 0;
+  }
+  .slick-slide > div {
+    margin:2px;
+  }
+}
+
 .slick-prev::before,
 .slick-next::before {
   display: none;

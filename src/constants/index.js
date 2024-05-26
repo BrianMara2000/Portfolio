@@ -40,7 +40,7 @@ export const projects = [
   {
     name: "Unset",
     description: "[Your Project Title] is a comprehensive project management application developed using Laravel, Inertia.js, React, and TailwindCSS. It empowers teams to streamline their workflow, collaborate effectively, and manage projects efficiently from start to finish.",
-    techStack: ["ReactJS", "tailwindCSS"],
+    techStack: ["ReactJS", "tailwindCSS", "laravel"],
     liveDemo: "http://www.linkedin.com/in/brianmara123",
     code: "https://github.com/BrianMara2000",
     image: portfolio,
