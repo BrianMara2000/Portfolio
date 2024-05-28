@@ -12,9 +12,10 @@ import {
   vue,
   figma,
 } from "../assets";
-import { useEffect } from "react";
 import styles from "../styles";
 import { layout } from "../styles";
+import { useEffect } from "react";
+import useScroll from "../hooks/useScroll.js";
 
 const About = () => {
   useEffect(() => {
@@ -38,13 +39,18 @@ const About = () => {
     }
   }, []);
 
+  useScroll();
+
   return (
     <section id="about" className="flex flex-col lg:h-screen">
-      <div className={`${layout.headerLayout} mb-28`}>
+      <div className={`${layout.headerLayout} mb-28`} data-aos="fade-down">
         <h1 className={`${styles.heading1}`}>About Me</h1>
       </div>
       <div className="flex flex-col md:flex-row justify-center md:justify-between items-center">
-        <div className="relative w-[90%] sm:w-[70%] md:w-[44%] md:h-[50vh] mb-52 md:mb-0 items-center justify-center text-center p-20  text-white font-poppins shadow-neuromorphic rounded-3xl">
+        <div
+          className="relative w-[90%] sm:w-[70%] md:w-[44%] md:h-[50vh] mb-52 md:mb-0 items-center justify-center text-center p-20  text-white font-poppins shadow-neuromorphic rounded-3xl"
+          data-aos="fade-right"
+        >
           <div className="absolute -top-20 left-1/2 -translate-x-[50%]">
             <img src={profile} alt="Profile Avatar" />
           </div>
@@ -55,11 +61,11 @@ const About = () => {
           </p>
           <Button title="Hire Me" margin="mt-10" />
         </div>
-        {/* <div className="w-[44%] h-[50vh] rounded-3xl bg-gradient-to-br from-green-400 to-indigo-600 transition-all duration-300"> */}
 
-        {/* </div> */}
-
-        <div className="relative w-[90%] sm:w-[70%] md:w-[44%] md:h-[50vh] mb-52 md:mb-0 items-center justify-center text-center p-20 text-white font-poppins rounded-3xl shadow-neuromorphic">
+        <div
+          className="relative w-[90%] sm:w-[70%] md:w-[44%] md:h-[50vh] mb-52 md:mb-0 items-center justify-center text-center p-20 text-white font-poppins rounded-3xl shadow-neuromorphic"
+          data-aos="fade-left"
+        >
           <div className="absolute -top-20 left-1/2 -translate-x-[50%] w-[150px] h-[150px] bg-white rounded-full flex items-center justify-center">
             <img
               src={techStack}

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { socialLinks } from "../constants";
+import useScroll from "../hooks/useScroll";
 
 const Footer = () => {
   const [hoveredLinkId, setHoveredLinkId] = useState(null);
@@ -12,13 +13,15 @@ const Footer = () => {
     setHoveredLinkId(null);
   };
 
+  useScroll();
+
   return (
     <footer
       id="footer"
       className="flex flex-col justify-center items-center h-[300px] space-y-10"
     >
       <div className="flex items-center justify-center space-x-14">
-        {socialLinks.map((link) => (
+        {socialLinks.map((link, index) => (
           <a
             key={link.id}
             href={link.link}
@@ -29,6 +32,8 @@ const Footer = () => {
               backgroundColor:
                 hoveredLinkId === link.id ? link.hoverColor : "#120422",
             }}
+            data-aos="fade-down"
+            data-aos-delay={index * 100}
           >
             <i
               className={`${link.icon} socialSvg group-hover:animate-slideInTop`}

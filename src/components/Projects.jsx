@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import Slider from "react-slick";
 import styles from "../styles";
@@ -8,6 +8,7 @@ import { projects } from "../constants";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import useScroll from "../hooks/useScroll";
 
 const Projects = () => {
   const [isTouchedPrev, setIsTouchedPrev] = useState(false);
@@ -71,10 +72,23 @@ const Projects = () => {
     waitForAnimate: false,
   };
 
+  useEffect(() => {
+    const slickSlider = document.querySelector(".slick-slider");
+    if (slickSlider) {
+      slickSlider.setAttribute("data-aos", "fade-down");
+      slickSlider.setAttribute("data-aos-delay", "200");
+    }
+  });
+
+  useScroll();
+
   return (
     <section id="section" className="flex flex-col items-center justify-center">
       <div className="relative flex flex-col items-center w-full h-full">
-        <h1 className={`${styles.heading1} ${layout.headerLayout} mb-10`}>
+        <h1
+          className={`${styles.heading1} ${layout.headerLayout} mb-10`}
+          data-aos="fade-down"
+        >
           Projects
         </h1>
         <div className="flex sm:hidden mb-10">
@@ -92,7 +106,7 @@ const Projects = () => {
                 isTouchedPrev ? "bg-vivid text-gray-900 transition-all" : ""
               }`}
             >
-              <button>
+              <button data-aos="fade-right">
                 <i className="fa-solid fa-angle-left text-3xl transition-all"></i>
               </button>
             </div>
@@ -100,6 +114,7 @@ const Projects = () => {
               ref={slider}
               {...settingsDesktop}
               className="flex justify-center items-center font-poppins w-full gap-x-5 py-10"
+              data-aos="zoom-in-up"
             >
               {projects.map((project) => (
                 <Cards
@@ -119,7 +134,7 @@ const Projects = () => {
                 isTouchedNext ? "bg-vivid text-gray-900 transition-all" : ""
               }`}
             >
-              <button>
+              <button data-aos="fade-left">
                 <i className="fa-solid fa-angle-right text-3xl transition-all"></i>
               </button>
             </div>
