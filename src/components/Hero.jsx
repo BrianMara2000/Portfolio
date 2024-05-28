@@ -2,17 +2,23 @@ import { TypeAnimation } from "react-type-animation";
 import { linkedin, facebook, githubIcon, youtube, hero } from "../assets";
 import { layout } from "../styles";
 import Button from "./Button";
+import useScroll from "../hooks/useScroll";
 
 const Hero = () => {
+  useScroll();
   return (
     <section id="home" className={`${layout.section}`}>
       <div className="text-white w-full sm:w-[50%] p-8 sm:p-0 justify-center items-center tracking-wider z-10">
         {/* FEATURED TEXT */}
         <div className="flex flex-col justify-center items-center sm:items-start mb-5">
-          <h2 className="font-poppins font-semibold text-center md:text-left md:font-bold text-2xl md:text-4xl mb-7 ">
-            Hi there! I&apos;m Brian Mara, a
+          <h2 className="font-poppins font-semibold text-center md:text-left md:font-bold text-2xl md:text-4xl mb-7 tracking-wider">
+            Hi! I&apos;m Brian Mara, a
           </h2>
-          <div className="mb-5 flex justify-center items-center text-center sm:text-left">
+          <div
+            className="mb-5 flex justify-center items-center text-center sm:text-left"
+            data-aos="fade-down"
+            data-aos-duration="1500"
+          >
             <TypeAnimation
               sequence={[
                 "Software Engineer",
@@ -28,14 +34,22 @@ const Hero = () => {
               repeat={Infinity}
             />
           </div>
-          <p className="font-poppins font-normal text-md md:text-xl tracking-widest sm:leading-6 md:leading-8 text-center sm:text-left">
+          <p
+            className="font-poppins font-normal text-md md:text-xl tracking-widest sm:leading-6 md:leading-8 text-center sm:text-left"
+            data-aos="fade-down"
+            data-aos-duration="700"
+          >
             Highly motivated and detail-oriented Software Engineer with hands-on
             experience in frontend and backend development.
           </p>
         </div>
 
         {/* BUTTON */}
-        <div className="flex justify-center sm:justify-start gap-5 mb-5">
+        <div
+          className="flex justify-center sm:justify-start gap-5 mb-5"
+          data-aos="fade-down"
+          data-aos-duration="700"
+        >
           <Button title="My Works" />
           <Button title="Download CV">
             <span>
@@ -61,7 +75,10 @@ const Hero = () => {
           <div className="absolute w-[50px] h-[50px] rounded-full animate-iconSlideXs sm:animate-iconSlideSm hover:pause cursor-pointer"></div>
         </div>
       </div>
-      <div className="hidden relative sm:flex w-[40%] justify-center items-center z-10 ">
+      <div
+        className="hidden relative sm:flex w-[40%] justify-center items-center z-10 "
+        data-aos="fade-left"
+      >
         <img
           src={hero}
           alt=""
