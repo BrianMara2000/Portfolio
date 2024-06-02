@@ -2,6 +2,8 @@ import { useState } from "react";
 import styles from "../styles";
 import emailjs from "emailjs-com";
 import useScroll from "../hooks/useScroll.js";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -27,7 +29,24 @@ const Contact = () => {
       message: formData.message,
     };
 
-    emailjs.send();
+    emailjs
+      .send("contact_service", "contact_form", params, "Vkara19Iw-qCxqrLE")
+      .then(
+        (response) => {
+          console.log("SUCCESS!", response.status, response.text);
+          toast.success("Message sent successfully.");
+          setFormData({
+            name: "",
+            email: "",
+            subject: "",
+            message: "",
+          });
+        },
+        (error) => {
+          console.error("FAILED...", error);
+          toast.error("Failed to send message.");
+        }
+      );
   };
 
   useScroll();
@@ -64,39 +83,55 @@ const Contact = () => {
             Phone: +639635325851
           </p>
         </div>
-        <div
+        <form
+          onSubmit={handleSubmit}
           className="flex flex-col w-[80%] sm:w-[60%] md:w-[48%] h-[380px] space-y-4"
           data-aos="fade-left"
         >
           <div className="flex justify-between w-full">
             <input
               type="text"
+              name="name"
               placeholder="Your Name"
+              value={formData.name}
+              onChange={handleChange}
               className="w-[48%] bg-transparent font-poppins font-normal text-md text-white border-2 border-[#777] px-4 py-4 rounded-xl"
             />
             <input
               type="email"
+              name="email"
               placeholder="Your Email"
+              value={formData.email}
+              onChange={handleChange}
               className="w-[48%] bg-transparent font-poppins font-normal text-md text-white border-2 border-[#777] px-4 py-4 rounded-xl"
             />
           </div>
           <input
             type="text"
+            name="subject"
             placeholder="Subject"
+            value={formData.subject}
+            onChange={handleChange}
             className="w-full bg-transparent font-poppins font-normal text-md text-white border-2 border-[#777] px-4 py-4 rounded-xl"
           />
           <textarea
+            name="message"
             placeholder="Message"
+            value={formData.message}
+            onChange={handleChange}
             className="w-full flex-1 bg-transparent font-poppins font-normal text-md text-white border-2 border-[#777] px-4 py-4 rounded-xl"
           ></textarea>
-        </div>
-        <button
-          className="flex md:absolute -bottom-16 right-[20%] bg-vivid text-white font-poppins font-semibold py-2 px-4  rounded-3xl"
-          data-aos="fade-left"
-        >
-          Send <i className="fa-regular fa-paper-plane ml-2"></i>
-        </button>
+          <button
+            type="submit"
+            className="flex absolute -bottom-16 left-[50%] bg-vivid text-white font-poppins font-semibold py-2 px-4  rounded-3xl"
+            data-aos="fade-right"
+            style={{ transform: "translate(-50%, 0)" }}
+          >
+            Send <i className="fa-regular fa-paper-plane ml-2"></i>
+          </button>
+        </form>
       </div>
+      <ToastContainer />
     </section>
   );
 };
