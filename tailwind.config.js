@@ -5,11 +5,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#282654",
-        secondary: "#B78DFF",
-        vivid: "#A571FF",
-        card: '#f2f2f2',
-        icon: 'rgb(44, 44, 44)'
+        'primary': "#282654",
+        'secondary': "#B78DFF",
+        'vivid': "#A571FF",
+        'card': '#f2f2f2',
+        'icon': 'rgb(44, 44, 44)'
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
