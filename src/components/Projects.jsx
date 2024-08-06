@@ -43,12 +43,11 @@ const Projects = () => {
     slidesToScroll: 1,
     responsive: [
       {
-        breakpoint: 1200,
+        breakpoint: 1300,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
           infinite: true,
-          dots: true,
         },
       },
       {
@@ -63,7 +62,7 @@ const Projects = () => {
   };
 
   const settingsMobile = {
-    dots: true,
+    dots: false,
     fade: true,
     infinite: true,
     speed: 1000,
@@ -83,13 +82,94 @@ const Projects = () => {
   useScroll();
 
   return (
-    <section id="section" className="flex flex-col items-center justify-center">
-      <div className="relative flex flex-col items-center w-full h-full">
+    <section
+      id="projects"
+      className="flex flex-col items-center justify-center"
+    >
+      <h1
+        className={`${styles.heading1} ${layout.headerLayout} mb-5`}
+        data-aos="fade-down"
+      >
+        Projects
+      </h1>
+      <div className="relative flex flex-col items-center justify-center w-full h-full mb-28">
         <h1
-          className={`${styles.heading1} ${layout.headerLayout} mb-10`}
+          className={`${styles.heading2} ${layout.headerLayout} mb-5`}
           data-aos="fade-down"
         >
-          Projects
+          Software
+        </h1>
+        <div className="flex sm:hidden mb-10">
+          <p className="text-[#f1f1f1] font-normal font-poppins">
+            Slide to see more
+          </p>
+        </div>
+        {isDesktopOrLaptop ? (
+          <>
+            <div
+              onTouchStart={touchArrowPrev}
+              onTouchEnd={endTouchArrowPrev}
+              onClick={() => slider?.current?.slickPrev()}
+              className={`absolute hidden sm:flex w-[50px] h-[50px] text-white top-[55%] left-0 translate-y-1/2 rounded-full items-center justify-center [@media(hover:hover)]:hover:bg-vivid [@media(hover:hover)]:hover:text-gray-900 cursor-pointer z-10 ${
+                isTouchedPrev ? "bg-vivid text-gray-900 transition-all" : ""
+              }`}
+            >
+              <button data-aos="fade-right">
+                <i className="fa-solid fa-angle-left text-3xl transition-all"></i>
+              </button>
+            </div>
+            <Slider
+              ref={slider}
+              {...settingsDesktop}
+              className="flex justify-center items-center font-poppins w-full gap-x-5 py-10"
+              data-aos="zoom-in-up"
+            >
+              {projects.map((project) => (
+                <Cards
+                  key={project.name}
+                  name={project.name}
+                  description={project.description}
+                  tags={project.techStack}
+                  image={project.image}
+                />
+              ))}
+            </Slider>
+            <div
+              onTouchStart={touchArrowNext}
+              onTouchEnd={endTouchArrowNext}
+              onClick={() => slider?.current?.slickNext()}
+              className={`absolute hidden sm:flex w-[50px] h-[50px] text-white top-[55%] right-0 translate-y-1/2 rounded-full items-center justify-center [@media(hover:hover)]:hover:bg-vivid [@media(hover:hover)]:hover:text-gray-900 cursor-pointer z-10 ${
+                isTouchedNext ? "bg-vivid text-gray-900 transition-all" : ""
+              }`}
+            >
+              <button data-aos="fade-left">
+                <i className="fa-solid fa-angle-right text-3xl transition-all"></i>
+              </button>
+            </div>
+          </>
+        ) : (
+          <Slider
+            {...settingsMobile}
+            className="flex justify-center items-center font-poppins w-full gap-x-5 py-10"
+          >
+            {projects.map((project) => (
+              <Cards
+                key={project.name}
+                name={project.name}
+                description={project.description}
+                tags={project.techStack}
+                image={project.image}
+              />
+            ))}
+          </Slider>
+        )}
+      </div>
+      <div className="relative flex flex-col items-center justify-center w-full h-full mb-48">
+        <h1
+          className={`${styles.heading2} ${layout.headerLayout} mb-5`}
+          data-aos="fade-down"
+        >
+          Hardware
         </h1>
         <div className="flex sm:hidden mb-10">
           <p className="text-[#f1f1f1] font-normal font-poppins">

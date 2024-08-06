@@ -1,23 +1,46 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { logo } from "../assets";
 import { navLinks } from "../constants";
 import styles from "../styles";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
-  const [arrow, setArrow] = useState(false);
   const [animationApplied, setAnimationApplied] = useState(false);
+  const [activeLink, setActiveLink] = useState(null);
 
-  const handleClick = (index) => {
-    if (index === 2) {
-      setArrow((prevArrow) => !prevArrow);
-    }
+  const handleClick = (index, id) => {
+    setActiveLink(id);
+    setToggle(false);
+    setAnimationApplied((prevAnimation) => !prevAnimation);
   };
 
   const toggleMenu = () => {
     setToggle((prevToggle) => !prevToggle);
     setAnimationApplied((prevAnimation) => !prevAnimation);
   };
+
+  const handleScroll = () => {
+    const sections = navLinks.map((link) => document.getElementById(link.id));
+    const scrollPos = window.scrollY + window.innerHeight / 2;
+    let currentSection = navLinks[0].id;
+
+    sections.forEach((section, index) => {
+      if (section.offsetTop <= scrollPos) {
+        currentSection = navLinks[index].id;
+      }
+    });
+
+    setActiveLink(currentSection);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Update active link on initial load
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <nav className="flex justify-between items-center py-6 z-0">
@@ -32,43 +55,16 @@ const Navbar = () => {
         {navLinks.map((link, index) => (
           <li
             key={link.id}
-            className={`flex justify-center items-center text-white font-poppins text-[20px] cursor-pointer font-normal hover:text-secondary transition-all ${
+            className={`relative flex justify-center items-center  font-poppins text-[20px] cursor-pointer font-normal hover:text-secondary transition-all ${
               index === navLinks.length - 1 ? "mr-0" : "mr-10"
+            } ${
+              activeLink === link.id
+                ? "text-secondary after:content-[''] after:absolute after:left-1/2 after:-bottom-[15px] after:transform after:-translate-x-1/2 after:-translate-y-1/2 after:w-full after:h-[2px] after:bg-vivid"
+                : "text-white"
             }`}
-            onClick={() => {
-              handleClick(index);
-            }}
+            onClick={() => handleClick(index, link.id)}
           >
             <a href={`#${link.id}`}>{link.title}</a>
-            {/* {index === 2 && (
-              <i
-                className={`${
-                  arrow ? "fa-solid fa-chevron-up" : "fa-solid fa-chevron-down"
-                } ml-3 cursor-pointer`}
-                onClick={(event) => {
-                  event.preventDefault();
-                  event.stopPropagation();
-                  setArrow((prevArrow) => !prevArrow);
-                }}
-              ></i>
-            )}
-
-            {index === 2 && arrow && (
-              <div
-                className={`absolute ${
-                  arrow ? "animate-fadeIn" : ""
-                }  flex items-center justify-center w-[250px] bg-primary  z-[1000] py-5 px-5 rounded-xl `}
-              >
-                <ul>
-                  <h1 className="text-white mb-5 hover:text-secondary">
-                    Software Projects
-                  </h1>
-                  <h1 className="text-white hover:text-secondary">
-                    Hardware Projects
-                  </h1>
-                </ul>
-              </div>
-            )} */}
           </li>
         ))}
       </ul>
@@ -102,14 +98,10 @@ const Navbar = () => {
             {navLinks.map((link, index) => (
               <li
                 key={link.id}
-                className={`relative flex-wrap justify-center items-center text-white font-poppins text-2xl cursor-pointer font-normal text-center ${
-                  index === 2 && arrow
-                    ? "mb-0"
-                    : index === navLinks.length - 1
-                    ? "mb-0"
-                    : "mb-20"
-                } opacity-0`}
-                onClick={handleClick}
+                className={`relative flex-wrap justify-center items-center text-white font-poppins text-2xl cursor-pointer font-normal text-center mb-20 opacity-0 ${
+                  activeLink === link.id ? "text-secondary" : ""
+                }`}
+                onClick={() => handleClick(index, link.id)}
                 style={{
                   animation: animationApplied
                     ? `navLinkFade 0.5s ease forwards ${index / 7 + 0.5}s`
@@ -122,25 +114,6 @@ const Navbar = () => {
                 >
                   {link.title}
                 </a>
-                {/* {index === 2 &&
-                  <i
-                    className={`${arrow ? 'fa-solid fa-chevron-up' : 'fa-solid fa-chevron-down'} ml-3 cursor-pointer`}
-                    onClick={(event) => {
-                      event.preventDefault();
-                      event.stopPropagation();
-                      setArrow(prevArrow => !prevArrow);
-                    }}
-                  ></i>
-                }
-                {index === 2 && arrow && 
-                  <div className={`${arrow ? 'flex translate-x-0 transition-transform' : 'hidden translate-x-full transition-transform'} w-full mt-0 bg-primary z-10 py-5 text-xl`}
-                  style={{ animation: arrow ? styles.toggleTrue : styles.toggleFalse }}>
-                    <ul>
-                      <h1 className='text-white mb-5 hover:text-secondary'>Software Projects</h1>
-                      <h1 className='text-white hover:text-secondary'>Hardware Projects</h1>
-                    </ul>
-                  </div>
-                } */}
               </li>
             ))}
           </ul>
