@@ -42,13 +42,13 @@ const About = () => {
   useScroll();
 
   return (
-    <section id="about" className="flex flex-col lg:h-screen">
+    <section id="about" className="flex flex-col justify-center lg:h-screen">
       <div className={`${layout.headerLayout} mb-28`} data-aos="fade-down">
         <h1 className={`${styles.heading1}`}>About Me</h1>
       </div>
       <div className="flex flex-col md:flex-row justify-center md:justify-between items-center">
         <div
-          className="relative w-[90%] sm:w-[70%] md:w-[44%] md:h-[50vh] mb-52 md:mb-0 items-center justify-center text-center p-20  text-white font-poppins shadow-neuromorphic rounded-3xl"
+          className="relative w-[90%] sm:w-[70%] md:w-[44%] md:h-[50vh] mb-52 items-center justify-center text-center p-20  text-white font-poppins shadow-neuromorphic rounded-3xl"
           data-aos="fade-right"
         >
           <div className="absolute -top-20 left-1/2 -translate-x-[50%]">
@@ -63,7 +63,7 @@ const About = () => {
         </div>
 
         <div
-          className="relative w-[90%] sm:w-[70%] md:w-[44%] md:h-[50vh] mb-52 md:mb-0 items-center justify-center text-center p-20 text-white font-poppins rounded-3xl shadow-neuromorphic"
+          className="relative w-[90%] sm:w-[70%] md:w-[44%] md:h-[50vh] mb-52 items-center justify-center text-center p-20 text-white font-poppins rounded-3xl shadow-neuromorphic"
           data-aos="fade-left"
         >
           <div className="absolute -top-20 left-1/2 -translate-x-[50%] w-[150px] h-[150px] bg-white rounded-full flex items-center justify-center">
